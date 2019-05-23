@@ -13,13 +13,15 @@
 
 #include "asio.hpp"
 #include <boost/aligned_storage.hpp>
+//#include <boost/noncopyable.hpp>
 
 // Class to manage the memory to be used for handler-based custom allocation.
 // It contains a single block of memory which may be returned for allocation
 // requests. If the memory is in use when an allocation request is made, the
 // allocator delegates allocation to the global heap.
 class handler_allocator
-  : private boost::noncopyable
+  //: private boost::noncopyable
+  : private asio::noncopyable
 {
 public:
   handler_allocator()
